@@ -1,0 +1,15 @@
+extract = 'remaining_heap: (\d+)'
+benchmarks = './src/benchmarks/mem/*.bril'
+
+[runs.baseline]
+pipeline = [
+    "bril2json",
+    "brili -p {args}",
+]
+
+[runs.myopt]
+pipeline = [
+    "bril2json",
+    "python remove_free.py",
+    "brili-gc -p {args}",
+]
